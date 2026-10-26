@@ -1,69 +1,166 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { Navbar, NavTab } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { FloatingActions } from "@/components/FloatingActions";
+import { HeroSlider } from "@/components/home/HeroSlider";
+import { FeaturedProjectsSlider } from "@/components/home/FeaturedProjectsSlider";
+import {
+  HomeServicesSection,
+  HomeAdvantagesSection,
+  PartnersMarqueeSection,
+  HomeCtaBanner,
+} from "@/components/home/HomeSections";
+import { AboutTab } from "@/components/tabs/AboutTab";
+import { ServicesTab } from "@/components/tabs/ServicesTab";
+import { PortfolioTab } from "@/components/tabs/PortfolioTab";
+import { MediaTab } from "@/components/tabs/MediaTab";
+import { CareersTab } from "@/components/tabs/CareersTab";
+import { ContactTab } from "@/components/tabs/ContactTab";
+import {
+  ProjectDetailModal,
+  NewsDetailModal,
+  CareerApplyModal,
+} from "@/components/modals/DetailsModal";
+import { PortfolioItem, NewsItem, CareerItem, SERVICES } from "@/data/siteData";
+
+function MainApp() {
+  const [activeTab, setActiveTab] = useState<NavTab>("home");
+  const [selectedServiceSlug, setSelectedServiceSlug] = useState<string>(SERVICES[0].slug);
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<NewsItem | null>(null);
+  const [selectedCareer, setSelectedCareer] = useState<CareerItem | null>(null);
+
+  // Sync hash from URL if accessed directly e.g. /#about or /#services
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace("#", "").toLowerCase() as NavTab;
+      const validTabs: NavTab[] = ["home", "about", "services", "portfolio", "media", "careers", "contact"];
+      if (validTabs.includes(hash)) {
+        setActiveTab(hash);
+      }
+    };
+
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
+  const handleTabChange = (tab: NavTab) => {
+    setActiveTab(tab);
+    window.location.hash = tab === "home" ? "" : tab;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSelectService = (slug: string) => {
+    setSelectedServiceSlug(slug);
+    setActiveTab("services");
+    window.location.hash = "services";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white text-slate-800">
+      {/* Navbar with active tab selector */}
+      <Navbar activeTab={activeTab} setActiveTab={handleTabChange} />
+
+      {/* Main Content Area */}
+      <main className="flex-1">
+        {activeTab === "home" && (
+          <div className="space-y-0 animate-in fade-in duration-300">
+            <HeroSlider setActiveTab={handleTabChange} />
+            <HomeServicesSection
+              setActiveTab={handleTabChange}
+              onSelectService={handleSelectService}
+            />
+            <FeaturedProjectsSlider
+              setActiveTab={handleTabChange}
+              onSelectProject={(proj) => setSelectedProject(proj)}
+            />
+            <HomeAdvantagesSection />
+            <PartnersMarqueeSection />
+            <HomeCtaBanner setActiveTab={handleTabChange} />
+          </div>
+        )}
+
+        {activeTab === "about" && (
+          <div className="animate-in fade-in duration-300">
+            <AboutTab setActiveTab={handleTabChange} />
+          </div>
+        )}
+
+        {activeTab === "services" && (
+          <div className="animate-in fade-in duration-300">
+            <ServicesTab
+              selectedSlug={selectedServiceSlug}
+              setActiveTab={handleTabChange}
+            />
+          </div>
+        )}
+
+        {activeTab === "portfolio" && (
+          <div className="animate-in fade-in duration-300">
+            <PortfolioTab
+              onSelectProject={(proj) => setSelectedProject(proj)}
+              setActiveTab={handleTabChange}
+            />
+          </div>
+        )}
+
+        {activeTab === "media" && (
+          <div className="animate-in fade-in duration-300">
+            <MediaTab onSelectArticle={(article) => setSelectedArticle(article)} />
+          </div>
+        )}
+
+        {activeTab === "careers" && (
+          <div className="animate-in fade-in duration-300">
+            <CareersTab onApplyCareer={(career) => setSelectedCareer(career)} />
+          </div>
+        )}
+
+        {activeTab === "contact" && (
+          <div className="animate-in fade-in duration-300">
+            <ContactTab />
+          </div>
+        )}
+      </main>
+
+      {/* Footer */}
+      <Footer
+        setActiveTab={handleTabChange}
+        onSelectService={handleSelectService}
+      />
+
+      {/* Floating Action Buttons */}
+      <FloatingActions />
+
+      {/* Modals */}
+      <ProjectDetailModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+        setActiveTab={handleTabChange}
+      />
+
+      <NewsDetailModal
+        article={selectedArticle}
+        onClose={() => setSelectedArticle(null)}
+      />
+
+      <CareerApplyModal
+        career={selectedCareer}
+        onClose={() => setSelectedCareer(null)}
+      />
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <LanguageProvider>
+      <MainApp />
+    </LanguageProvider>
   );
 }
