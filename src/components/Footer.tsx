@@ -31,9 +31,9 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onSelectService })
   return (
     <footer className="bg-slate-950 text-white pt-16 pb-12 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-slate-800/80">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-14 border-b border-slate-800/80">
           {/* Col 1: Brand & Profile */}
-          <div className="space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10">
                 <Image
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onSelectService })
               </div>
             </div>
 
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
               {t(
                 "PT. Mora Jaya Persada adalah perusahaan kontraktor telekomunikasi terintegrasi yang melayani instalasi, relokasi combat, CME, fiber optic, dan pemeliharaan menara BTS di seluruh Indonesia.",
                 "PT. Mora Jaya Persada is an integrated telecommunications contractor specializing in installation, combat relocation, CME, fiber optic, and BTS tower maintenance across Indonesia."
@@ -66,66 +66,58 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onSelectService })
             </div>
           </div>
 
-          {/* Col 2: Quick Links */}
+          {/* Col 2: Corporate Pages */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-sky-400 mb-4">
-              {t("Tautan Cepat", "Quick Links")}
+              {t("Perusahaan", "Corporate")}
             </h4>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <button
-                  onClick={() => handleNav("home")}
-                  className="text-slate-400 hover:text-white transition-colors cursor-pointer"
-                >
-                  {t("Beranda", "Home")}
-                </button>
-              </li>
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
                 <button
                   onClick={() => handleNav("about")}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                 >
-                  {t("Tentang Kami", "About Us")}
+                  {t("Profil Perusahaan", "About Us")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav("services")}
+                  onClick={() => handleNav("vision-mission")}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                 >
-                  {t("Layanan Kami", "Our Services")}
+                  {t("Visi, Misi & Nilai", "Vision & Mission")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav("portfolio")}
+                  onClick={() => handleNav("organization")}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                 >
-                  {t("Portofolio Proyek", "Project Portfolio")}
+                  {t("Struktur Organisasi", "Organization")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav("media")}
+                  onClick={() => handleNav("legality")}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                 >
-                  {t("Berita & Artikel", "News & Media")}
+                  {t("Legalitas & Sertifikasi", "Legality & ISO")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav("careers")}
+                  onClick={() => handleNav("clients")}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                 >
-                  {t("Karir & Lowongan", "Careers")}
+                  {t("Klien & Rekanan", "Clients & Partners")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav("contact")}
+                  onClick={() => handleNav("download")}
                   className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                 >
-                  {t("Kontak Kami", "Contact Us")}
+                  {t("Download Center", "Download Center")}
                 </button>
               </li>
             </ul>
@@ -134,9 +126,9 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onSelectService })
           {/* Col 3: Services */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-sky-400 mb-4">
-              {t("Layanan Unggulan", "Featured Services")}
+              {t("Layanan Unggulan", "Services")}
             </h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-xs sm:text-sm">
               {SERVICES.map((s) => (
                 <li key={s.id}>
                   <button
@@ -154,36 +146,36 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onSelectService })
           {/* Col 4: Contact Info */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-sky-400 mb-4">
-              {t("Kontak & Lokasi", "Contact & Location")}
+              {t("Kontak & Lokasi", "Contact & Office")}
             </h4>
-            <ul className="space-y-3.5 text-sm text-slate-300">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-1" />
-                <span className="text-slate-400 text-xs leading-relaxed">
+            <ul className="space-y-3.5 text-xs text-slate-300">
+              <li className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <span className="text-slate-400 leading-relaxed">
                   {COMPANY_INFO.fullAddress}
                 </span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-sky-400 shrink-0" />
                 <a
                   href={`tel:${COMPANY_INFO.phoneRaw}`}
-                  className="text-slate-300 hover:text-white transition-colors font-medium text-xs"
+                  className="text-slate-300 hover:text-white transition-colors font-medium"
                 >
                   {COMPANY_INFO.phone}
                 </a>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-sky-400 shrink-0" />
                 <a
                   href={`mailto:${COMPANY_INFO.email}`}
-                  className="text-slate-300 hover:text-white transition-colors text-xs"
+                  className="text-slate-300 hover:text-white transition-colors"
                 >
                   {COMPANY_INFO.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                <span className="text-slate-400 text-xs">
+                <span className="text-slate-400">
                   {COMPANY_INFO.workHours[locale]}
                 </span>
               </li>

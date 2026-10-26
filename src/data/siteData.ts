@@ -1604,3 +1604,310 @@ export const PARTNERS = [
   { name: "Indosat Ooredoo Hutchison", role: "Cellular Partner" },
   { name: "PT IMMOBI Solusi Prima", role: "Solutions Partner" }
 ];
+
+export interface OrganizationLeader {
+  name: string;
+  role: LocalizedString;
+  department: string;
+  image?: string;
+}
+
+export interface RegionalPM {
+  region: string;
+  name: string;
+  role: string;
+  coverage: LocalizedString;
+  staffCount: number;
+}
+
+export interface LegalityDoc {
+  id: string;
+  title: LocalizedString;
+  number: string;
+  issuer: string;
+  type: "Legalitas Usaha" | "Sertifikasi" | "SBU";
+  status: "Berlaku" | "Active";
+  file?: string;
+}
+
+export interface DownloadItem {
+  id: string;
+  title: LocalizedString;
+  category: "Profil Perusahaan" | "Katalog" | "Brosur" | "Legalitas" | "Sertifikasi";
+  description: LocalizedString;
+  fileSize: string;
+  fileFormat: string;
+  downloadUrl: string;
+}
+
+export const LEADERSHIP: OrganizationLeader[] = [
+  {
+    name: "Ebdi Bronson",
+    role: { id: "Direktur Utama", en: "President Director" },
+    department: "Executive Board"
+  },
+  {
+    name: "M Subagia",
+    role: { id: "Direktur Proyek", en: "Project Director" },
+    department: "Operations"
+  },
+  {
+    name: "Dirgantara",
+    role: { id: "Direktur Komersial & Penjualan", en: "Sales Director" },
+    department: "Commercial"
+  },
+  {
+    name: "Glori S",
+    role: { id: "General Manager", en: "General Manager" },
+    department: "Executive Management"
+  },
+  {
+    name: "Sarah",
+    role: { id: "Manajer Keuangan", en: "Finance Manager" },
+    department: "Finance"
+  },
+  {
+    name: "Lia",
+    role: { id: "Manajer SDM (HR)", en: "HR Manager" },
+    department: "Human Resources"
+  },
+  {
+    name: "T Syahrina",
+    role: { id: "Project Coordinator Nasional", en: "National Project Coordinator" },
+    department: "Project Management"
+  },
+  {
+    name: "Fera Ansori",
+    role: { id: "Manajer Penjualan", en: "Sales Manager" },
+    department: "Commercial"
+  }
+];
+
+export const REGIONAL_PMS: RegionalPM[] = [
+  {
+    region: "Area 1 - Sumatera",
+    name: "Anton S",
+    role: "Project Manager Sumatera",
+    coverage: { id: "Aceh, Sumut, Sumbar, Riau, Kepri, Jambi, Sumsel, Bengkulu, Lampung", en: "Sumatra Region" },
+    staffCount: 18
+  },
+  {
+    region: "Area 2 - Jabodetabek & Jawa Barat",
+    name: "Guntur A",
+    role: "Project Manager Jabo & WJ",
+    coverage: { id: "DKI Jakarta, Bogor, Depok, Tangerang, Bekasi, Banten, Jawa Barat", en: "Greater Jakarta & West Java" },
+    staffCount: 15
+  },
+  {
+    region: "Area 3 - Jawa Tengah, Jatim & Bali Nusra",
+    name: "Afriyadhi",
+    role: "Project Manager CJ, EJ, BN",
+    coverage: { id: "Jawa Tengah, DI Yogyakarta, Jawa Timur, Bali, NTB, NTT", en: "Central & East Java, Bali Nusra" },
+    staffCount: 14
+  },
+  {
+    region: "Area 4 - Kalimantan",
+    name: "Erwin",
+    role: "Project Manager Kalimantan",
+    coverage: { id: "Kalimantan Selatan, Timur, Tengah, Barat, dan Utara", en: "Kalimantan Island" },
+    staffCount: 12
+  },
+  {
+    region: "Area 5 - Sulawesi, Papua & Maluku",
+    name: "Rudin FS",
+    role: "Project Manager Sulawesi & PUMA",
+    coverage: { id: "Sulawesi Selatan, Utara, Tengah, Tenggara, Maluku, Papua", en: "Sulawesi, Papua & Maluku" },
+    staffCount: 10
+  }
+];
+
+export const LEGALITY_DOCS: LegalityDoc[] = [
+  {
+    id: "leg-1",
+    title: { id: "SBU - Jasa Pelaksana Instalasi Telekomunikasi", en: "SBU - Telecom Installation Contracting" },
+    number: "PB-UMKU: 9120001432717100050003",
+    issuer: "LPJK / Kementerian PUPR",
+    type: "SBU",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-2",
+    title: { id: "SBU - Konstruksi Gedung Perkantoran & Bangunan Sipil", en: "SBU - Office & Civil Building Construction" },
+    number: "PB-UMKU: 9120001432717100040003",
+    issuer: "LPJK / Kementerian PUPR",
+    type: "SBU",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-3",
+    title: { id: "ISO 9001:2015 - Sistem Manajemen Mutu", en: "ISO 9001:2015 - Quality Management System" },
+    number: "Sertifikat #629429",
+    issuer: "TUV Rheinland / International Certification",
+    type: "Sertifikasi",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-4",
+    title: { id: "ISO 14001:2015 - Sistem Manajemen Lingkungan", en: "ISO 14001:2015 - Environmental Management" },
+    number: "Sertifikat #629431",
+    issuer: "TUV Rheinland / International Certification",
+    type: "Sertifikasi",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-5",
+    title: { id: "ISO 45001:2018 - Keselamatan & Kesehatan Kerja (K3)", en: "ISO 45001:2018 - Occupational Health & Safety" },
+    number: "Sertifikat #629430",
+    issuer: "TUV Rheinland / International Certification",
+    type: "Sertifikasi",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-6",
+    title: { id: "Nomor Induk Berusaha (NIB) Berbasis Risiko", en: "Business Identification Number (NIB)" },
+    number: "NIB: 9120001432717",
+    issuer: "Kementerian Investasi / BKPM (OSS-RBA)",
+    type: "Legalitas Usaha",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-7",
+    title: { id: "Akta Notaris Pendirian Perusahaan", en: "Notarial Deed of Company Establishment" },
+    number: "Akta No. 46100 Tanggal 9 April 2019",
+    issuer: "Notaris & PPAT Palembang",
+    type: "Legalitas Usaha",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-8",
+    title: { id: "Pengesahan Badan Hukum Kemenkumham", en: "Ministry of Law & Human Rights Approval" },
+    number: "SK AHU-0018692.AH.01.01.Tahun 2019",
+    issuer: "Kementerian Hukum dan HAM RI",
+    type: "Legalitas Usaha",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-9",
+    title: { id: "Kartu Tanda Anggota (KTA) ASPEKNAS", en: "ASPEKNAS National Contractor Association Member" },
+    number: "KTA-ASPEKNAS: 016/DAP/KTA/2021",
+    issuer: "Dewan Pengurus ASPEKNAS",
+    type: "Sertifikasi",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-10",
+    title: { id: "Nomor Pokok Wajib Pajak (NPWP) Perusahaan", en: "Corporate Tax ID (NPWP)" },
+    number: "91.028.981.4-307.000",
+    issuer: "Direktorat Jenderal Pajak Kemenkeu RI",
+    type: "Legalitas Usaha",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-11",
+    title: { id: "Sertifikasi Tenaga Kerja Bangunan Tinggi (TKBT)", en: "Working at Heights Climbing Certification" },
+    number: "Lisensi K3 Ketinggian TKBT Tingkat 1 & 2",
+    issuer: "Kementerian Ketenagakerjaan RI",
+    type: "Sertifikasi",
+    status: "Berlaku"
+  },
+  {
+    id: "leg-12",
+    title: { id: "Surat Pengukuhan Pengusaha Kena Pajak (SPPKP)", en: "Taxable Entrepreneur Registration Certificate" },
+    number: "S-142PKP/WPJ.03/KP.0803/2019",
+    issuer: "Kantor Pelayanan Pajak Pratama",
+    type: "Legalitas Usaha",
+    status: "Berlaku"
+  }
+];
+
+export const CLIENTS_LIST = [
+  { name: "PT. Telkom Infrastruktur Indonesia", sector: "Tower & Infra Operator", projectsCount: "25+ Sites", logoText: "Telkom Infra" },
+  { name: "PT. Smart Telecom (Smartfren)", sector: "Cellular Provider", projectsCount: "50+ Sites", logoText: "Smartfren" },
+  { name: "PT. IMMOBI Solusi Prima", sector: "Tower Infrastructure", projectsCount: "100+ Sites", logoText: "IMMOBI" },
+  { name: "PT. Visi Infra Nusantara", sector: "Telecom Engineering", projectsCount: "15+ Sites", logoText: "VIN" },
+  { name: "PT. Sarana Maju Lestari", sector: "Infrastructure", projectsCount: "20+ Sites", logoText: "SML" },
+  { name: "PT. Tekno Infrastruktur Sukses", sector: "Engineering & Civil", projectsCount: "18+ Sites", logoText: "TIS" },
+  { name: "PT. Mahardika Teknotama Integrasi", sector: "System Integration", projectsCount: "12+ Sites", logoText: "Mahardika" },
+  { name: "PT. Sempurna Global Pertama", sector: "Telecommunication", projectsCount: "10+ Sites", logoText: "SGP" },
+  { name: "PT. Tower Bersama Group (TBG)", sector: "Tower Provider", projectsCount: "40+ Sites", logoText: "TBG" },
+  { name: "PT. GCI Indonesia", sector: "Telecom Services", projectsCount: "30+ Sites", logoText: "GCI" },
+  { name: "PT. Pertamina (Persero)", sector: "Energy & Telemetry", projectsCount: "14 Sites", logoText: "Pertamina" },
+  { name: "PT. Citrine Solvo Energi", sector: "Renewable Energy", projectsCount: "8 Sites", logoText: "Citrine" },
+  { name: "PT. Sinar Sugan Sejahtera", sector: "Electrical & Grid", projectsCount: "22 Sites", logoText: "SSS" },
+  { name: "PT. Dylya", sector: "Power Infrastructure", projectsCount: "16 Sites", logoText: "Dylya" }
+];
+
+export const DOWNLOAD_DOCS: DownloadItem[] = [
+  {
+    id: "dl-1",
+    title: { id: "Company Profile PT Mora Jaya Persada 2024", en: "Company Profile PT Mora Jaya Persada 2024" },
+    category: "Profil Perusahaan",
+    description: { id: "Profil komprehensif perusahaan meliputi sejarah, jajaran manajemen, portofolio, dan sertifikasi.", en: "Full corporate overview including history, leadership, portfolio, and QHSE credentials." },
+    fileSize: "8.4 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-compro"
+  },
+  {
+    id: "dl-2",
+    title: { id: "Katalog Lengkap Layanan Infrastruktur 2024", en: "Comprehensive Services Catalog 2024" },
+    category: "Katalog",
+    description: { id: "Katalog teknis 7 pilar layanan: BTS Combat, CME, Fiber Optic, Maintenance, dan PLTS.", en: "Technical catalog covering 7 service pillars: BTS Combat, CME, Fiber, Maintenance, and Solar." },
+    fileSize: "6.2 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-catalog"
+  },
+  {
+    id: "dl-3",
+    title: { id: "Brosur Tower BTS & Combat Solutions", en: "Tower BTS & Combat Solutions Brochure" },
+    category: "Brosur",
+    description: { id: "Panduan spesifikasi teknis relokasi combat tower, re-engineering, dan ereksi menara SST/Monopole.", en: "Technical brochure for combat tower relocation, re-engineering, and tower erection." },
+    fileSize: "3.5 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-bts"
+  },
+  {
+    id: "dl-4",
+    title: { id: "Brosur Fiber Optic Network Solutions", en: "Fiber Optic Network Solutions Brochure" },
+    category: "Brosur",
+    description: { id: "Panduan teknis penggelaran kabel serat optik bawah tanah (HDD/trenching), aerial, dan splicing OTDR.", en: "Technical brochure for underground and aerial fiber haulage, fusion splicing, and OTDR verification." },
+    fileSize: "4.1 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-fo"
+  },
+  {
+    id: "dl-5",
+    title: { id: "Sertifikat Badan Usaha (SBU) Jasa Konstruksi", en: "Construction Business Entity Certificate (SBU)" },
+    category: "Legalitas",
+    description: { id: "Salinan resmi SBU Jasa Pelaksana Konstruksi Instalasi Telekomunikasi PB-UMKU LPJK.", en: "Official copy of the SBU Telecom Contracting License from the Construction Development Board." },
+    fileSize: "2.8 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-sbu"
+  },
+  {
+    id: "dl-6",
+    title: { id: "Sertifikat ISO 9001:2015 (Mutu)", en: "ISO 9001:2015 Certificate (Quality)" },
+    category: "Sertifikasi",
+    description: { id: "Sertifikat Sistem Manajemen Mutu TUV Rheinland #629429.", en: "TUV Rheinland Quality Management Certificate #629429." },
+    fileSize: "1.9 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-iso9001"
+  },
+  {
+    id: "dl-7",
+    title: { id: "Sertifikat ISO 14001:2015 (Lingkungan)", en: "ISO 14001:2015 Certificate (Environment)" },
+    category: "Sertifikasi",
+    description: { id: "Sertifikat Sistem Manajemen Lingkungan TUV Rheinland #629431.", en: "TUV Rheinland Environmental Management Certificate #629431." },
+    fileSize: "1.9 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-iso14001"
+  },
+  {
+    id: "dl-8",
+    title: { id: "Sertifikat ISO 45001:2018 (K3 / HSE)", en: "ISO 45001:2018 Certificate (Safety)" },
+    category: "Sertifikasi",
+    description: { id: "Sertifikat Sistem Manajemen Keselamatan & Kesehatan Kerja K3 TUV Rheinland #629430.", en: "TUV Rheinland Occupational Health & Safety Certificate #629430." },
+    fileSize: "1.9 MB",
+    fileFormat: "PDF",
+    downloadUrl: "#download-iso45001"
+  }
+];
